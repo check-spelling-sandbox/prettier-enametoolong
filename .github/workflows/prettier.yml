@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: Install prettier
         run: |
-          echo "{}" | tee package.json 
+          echo "{}" | tee package.json
+          corepack enable
           YARN_ENABLE_IMMUTABLE_INSTALLS=false corepack use yarn@3
           yarn init
           yarn add prettier
