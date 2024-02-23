@@ -22,7 +22,7 @@ jobs:
         run: |
           x=a
           b() {
-            touch $x.json && x="$x$x"
+            touch $x.json && x="$x$x" || true
           }
           for c in $(seq 10); do b;done
 
