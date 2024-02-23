@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install prettier
+        run: |
+          yarn init
+          yarn add prettier
+ 
+      - name: Create files
+        run: |
+          x=a
+          b() {
+            touch $x.json && x="$x$x"
+          }
+          for c in $(seq 10); do b;done
+
+      - name: "Run prettier (${{env.count}})"
+        env: 
+          count: 7
+        run: |
+          spec="{"$(ls a* | head -${{env.count}} |xargs| tr " " ,)"}"
+          (
+            ls $spec
+            yarn prettier 
+          ) | tee -a $GITHUB_STEP_SUMMARY
+
+      - name: "Run prettier (${{env.count}})"
+        env: 
+          count: 8
+        run: |
+          spec="{"$(ls a* | head -${{env.count}} |xargs| tr " " ,)"}"
+          (
+            ls $spec
+            yarn prettier 
+          ) | tee -a $GITHUB_STEP_SUMMARY
