@@ -1,4 +1,4 @@
-name: CI
+name: Prettier
 
 on:
   push:
@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Install prettier
         run: |
+          yarn set version 3
           yarn init
           yarn add prettier
  
