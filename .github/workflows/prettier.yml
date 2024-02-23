@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Install prettier
         run: |
-          echo "{}" | tee package.json > yarn.lock
+          echo "{}" | tee package.json 
           corepack use yarn@3
           yarn init
           yarn add prettier
