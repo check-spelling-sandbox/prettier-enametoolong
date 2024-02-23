@@ -33,7 +33,7 @@ jobs:
           spec="{"$(ls a* | head -${{env.count}} |xargs| tr " " ,)"}"
           (
             eval ls $spec
-            yarn prettier 
+            yarn prettier "$spec"
           ) | tee -a $GITHUB_STEP_SUMMARY
 
       - name: "Run prettier (${{env.count}})"
@@ -43,5 +43,5 @@ jobs:
           spec="{"$(ls a* | head -${{env.count}} |xargs| tr " " ,)"}"
           (
             eval ls $spec
-            yarn prettier 
+            yarn prettier "$spec"
           ) | tee -a $GITHUB_STEP_SUMMARY
