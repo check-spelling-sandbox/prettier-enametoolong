@@ -34,7 +34,7 @@ jobs:
           (
             echo "spec: $spec"
             eval ls $spec
-            yarn prettier "$spec" 2>&1
+            strace -ff -s2048 yarn prettier "$spec" 2>&1
           ) | tee -a $GITHUB_STEP_SUMMARY
 
       - name: "Run prettier (${{env.count}})"
