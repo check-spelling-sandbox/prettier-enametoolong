@@ -34,6 +34,9 @@ jobs:
           (
             echo "spec: $spec"
             eval ls $spec
+            echo 'expand with bash:'
+            strace -ff bash -c "echo $spec"
+            echo 'expand with prettier'
             strace -ff -s2048 yarn prettier "$spec" 2>&1
           ) | tee -a $GITHUB_STEP_SUMMARY
 
@@ -45,5 +48,8 @@ jobs:
           (
             echo "spec: $spec"
             eval ls $spec
+            echo 'expand with bash:'
+            strace -ff bash -c "echo $spec"
+            echo 'expand with prettier'
             strace -ff -s2048 yarn prettier "$spec" 2>&1
           ) | tee -a $GITHUB_STEP_SUMMARY
